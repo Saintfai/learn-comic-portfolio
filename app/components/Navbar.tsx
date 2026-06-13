@@ -6,7 +6,7 @@ export default function Navbar() {
       </div>
       <div className="nav-links">
         <a href="#about" className="btn btn-secondary">About</a>
-        <a href="#projects" className="btn btn-primary">Projects</a>
+        <a href="#projects" className="btn btn-primary">View Comics</a>
       </div>
     </nav>
   );

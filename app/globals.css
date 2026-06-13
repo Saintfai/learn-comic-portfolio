@@ -26,6 +26,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-gutter);
   color: var(--text-ink);

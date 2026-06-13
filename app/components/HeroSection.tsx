@@ -13,7 +13,6 @@ export default function HeroSection() {
           </p>
           <div className="hero-actions">
             <a href="#contact" className="btn btn-primary rotate-text-alt">Hire Me Now!</a>
-            <a href="#projects" className="btn btn-secondary">View Comics</a>
           </div>
         </div>
         <div className="col-4">
