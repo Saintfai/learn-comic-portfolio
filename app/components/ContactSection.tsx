@@ -1,6 +1,6 @@
 export default function ContactSection() {
   return (
-    <section id="contact" className="contact-section">
+    <section id="contact" className="contact-section fade-in-up delay-300">
       <div className="grid-container">
         <div className="col-6">
           <h2 className="rotate-text contact-title">

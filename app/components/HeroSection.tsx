@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <section className="hero-section shear-bottom">
+    <section className="hero-section shear-bottom fade-in-up">
       <div className="grid-container">
         <div className="col-8">
           <h1 className="hero-title rotate-text">

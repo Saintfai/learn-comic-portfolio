@@ -55,6 +55,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .hard-shadow {
   position: relative;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hard-shadow:hover {
+  transform: translate(-1px, -1px);
+  z-index: 2;
 }
 
 .hard-shadow::after {
@@ -66,6 +72,11 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   background-color: var(--color-pure-black);
   z-index: -1;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hard-shadow:hover::after {
+  transform: translate(1px, 1px);
 }
 
 .hard-shadow-primary::after { background-color: var(--color-spiderman-red); }
@@ -463,4 +474,117 @@ h1, h2, h3, h4, h5, h6 {
 
 .submit-btn-container {
   margin-top: 2rem;
+}
+
+/* --- NEW INTERACTIVE UX --- */
+
+/* Floating Animation for Hero Illustration */
+@keyframes floatAnimation {
+  0% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(2deg); }
+}
+
+.hero-illustration-container {
+  animation: floatAnimation 4s ease-in-out infinite;
+}
+
+/* Wiggle effect for kickers on hover */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+.comic-card:hover .kicker {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* Input Focus Pop */
+.comic-input {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-width 0.2s ease;
+}
+
+.comic-input:focus {
+  transform: translateY(-2px) translateX(-2px);
+  box-shadow: 4px 4px 0 var(--color-pure-black);
+}
+
+/* Smooth Page Load Fade In */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Comic Action Pop Effect (BOOM, ZAP, POW) */
+.comic-card::after {
+  content: attr(data-comic-action);
+  position: absolute;
+  top: var(--mouse-y, 50%);
+  left: var(--mouse-x, 50%);
+  transform: translate(-50%, -50%) scale(0);
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-style: italic;
+  font-weight: 900;
+  -webkit-text-stroke: 1px var(--color-pure-black);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes comicExplosion {
+  0% { transform: translate(-50%, -50%) scale(0) rotate(15deg); opacity: 0; }
+  15% { transform: translate(-50%, -50%) scale(1.3) rotate(-5deg); opacity: 1; }
+  30% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+  70% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.5) rotate(-5deg); opacity: 0; }
+}
+
+.comic-card.show-action::after {
+  animation: comicExplosion 0.7s ease-out forwards;
+}
+
+/* Variasi Warna Berbeda untuk Tiap Kata */
+.comic-card[data-comic-action="ZAP!"]::after {
+  color: var(--color-wolverine-yellow);
+  text-shadow: 2px 2px 0 var(--color-spiderman-red), 4px 4px 0 var(--color-pure-black);
+}
+
+.comic-card[data-comic-action="WHAM!"]::after {
+  color: var(--color-pure-white);
+  text-shadow: 2px 2px 0 var(--color-captain-blue), 4px 4px 0 var(--color-pure-black);
+}
+
+.comic-card[data-comic-action="BOOM!"]::after {
+  color: var(--color-spiderman-red);
+  text-shadow: 2px 2px 0 var(--color-wolverine-yellow), 4px 4px 0 var(--color-pure-black);
+}
+
+.comic-card[data-comic-action="POW!"]::after {
+  color: var(--color-captain-blue);
+  text-shadow: 2px 2px 0 var(--color-pure-white), 4px 4px 0 var(--color-pure-black);
+}
+
+.comic-card[data-comic-action="BAM!"]::after {
+  color: var(--color-wolverine-yellow);
+  text-shadow: 2px 2px 0 var(--color-captain-blue), 4px 4px 0 var(--color-pure-black);
 }

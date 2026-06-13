@@ -1,11 +1,13 @@
+import ComicCard from "./ComicCard";
+
 export default function AboutSection() {
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding fade-in-up delay-100">
       <div className="grid-container">
         <div className="col-5">
           <h2 className="rotate-text section-title">Origin Story</h2>
           <div className="hard-shadow hard-shadow-tertiary mt-4">
-            <div className="comic-card">
+            <ComicCard>
               <div className="comic-card-header bg-blue">
                 Secret Identity
               </div>
@@ -14,11 +16,11 @@ export default function AboutSection() {
                 <p className="mb-2"><strong className="text-mono">Base of Operations:</strong> New York City</p>
                 <p><strong className="text-mono">Superpowers:</strong> React, Next.js, CSS Wizardry, UI Design</p>
               </div>
-            </div>
+            </ComicCard>
           </div>
         </div>
         <div className="col-7">
-          <div className="comic-card about-mission-card">
+          <ComicCard className="about-mission-card">
             <div className="kicker">Confidential</div>
             <h3 className="mission-title">The Mission</h3>
             <p className="mission-text">
@@ -28,7 +30,7 @@ export default function AboutSection() {
             <p className="mission-text">
               I specialize in brutalist layouts, high-impact typography, and creating interfaces that feel physically printed rather than digitally rendered.
             </p>
-          </div>
+          </ComicCard>
         </div>
       </div>
     </section>

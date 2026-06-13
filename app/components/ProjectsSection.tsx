@@ -1,6 +1,8 @@
+import ComicCard from "./ComicCard";
+
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="projects-section fade-in-up delay-200">
       <div className="grid-container">
         <div className="col-12 text-center projects-title-container">
           <h2 className="rotate-text-alt projects-title">
@@ -10,7 +12,7 @@ export default function ProjectsSection() {
         
         <div className="col-4">
           <div className="hard-shadow hard-shadow-primary h-full">
-            <div className="comic-card">
+            <ComicCard>
               <div className="kicker">Issue #1</div>
               <div className="comic-card-header bg-red">
                 E-Commerce Redux
@@ -23,13 +25,13 @@ export default function ProjectsSection() {
                   <span className="chip">Node.js</span>
                 </div>
               </div>
-            </div>
+            </ComicCard>
           </div>
         </div>
 
         <div className="col-4">
           <div className="hard-shadow hard-shadow-tertiary h-full">
-            <div className="comic-card">
+            <ComicCard>
               <div className="kicker">Issue #2</div>
               <div className="comic-card-header bg-blue">
                 SaaS Dashboard
@@ -42,13 +44,13 @@ export default function ProjectsSection() {
                   <span className="chip">D3.js</span>
                 </div>
               </div>
-            </div>
+            </ComicCard>
           </div>
         </div>
 
         <div className="col-4">
           <div className="hard-shadow hard-shadow-primary h-full">
-            <div className="comic-card">
+            <ComicCard>
               <div className="kicker">Issue #3</div>
               <div className="comic-card-header bg-black">
                 Web3 Portal
@@ -61,7 +63,7 @@ export default function ProjectsSection() {
                   <span className="chip">Ethers</span>
                 </div>
               </div>
-            </div>
+            </ComicCard>
           </div>
         </div>
       </div>
