@@ -56,10 +56,139 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
+/* ============================================
+   COMIC BOOK BACKGROUND SYSTEM
+   Ben-Day Dots + Speed Lines + Panel Gutters
+   ============================================ */
+
 /* Halftone Pattern (Simulated with radial gradient) */
 .halftone-bg {
   background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 2px, transparent 2.5px);
   background-size: 16px 16px;
+}
+
+/* Panel Gutter Lines — visible comic panel borders between sections */
+.panel-gutter {
+  position: relative;
+  margin: 0 2rem;
+  height: 12px;
+  background-color: var(--bg-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.panel-gutter::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--color-pure-black);
+  transform: translateY(-50%);
+}
+
+.panel-gutter::after {
+  content: "✦";
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-gutter);
+  padding: 0 12px;
+  font-size: 1rem;
+  color: var(--color-pure-black);
+}
+
+/* Speed Lines — Radial burst behind sections */
+.speed-lines {
+  position: relative;
+  overflow: hidden;
+}
+
+.speed-lines::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-conic-gradient(
+    transparent 0deg,
+    transparent 3.5deg,
+    rgba(0, 0, 0, 0.03) 3.5deg,
+    rgba(0, 0, 0, 0.03) 4deg
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.speed-lines > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Speed Lines variant — Red burst for hero */
+.speed-lines-hero::before {
+  background: repeating-conic-gradient(
+    transparent 0deg,
+    transparent 4.5deg,
+    rgba(226, 54, 54, 0.06) 4.5deg,
+    rgba(226, 54, 54, 0.06) 5deg
+  );
+}
+
+/* Speed Lines variant — Blue burst for projects */
+.speed-lines-blue::before {
+  background: repeating-conic-gradient(
+    transparent 0deg,
+    transparent 3deg,
+    rgba(255, 255, 255, 0.04) 3deg,
+    rgba(255, 255, 255, 0.04) 3.5deg
+  );
+}
+
+/* Corner Burst — small star burst decoration */
+.corner-burst {
+  position: relative;
+}
+
+.corner-burst::after {
+  content: "★";
+  position: absolute;
+  font-size: 2rem;
+  color: var(--color-wolverine-yellow);
+  text-shadow: 1px 1px 0 var(--color-pure-black);
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.corner-burst-tl::after { top: -8px; left: -8px; }
+.corner-burst-tr::after { top: -8px; right: -8px; }
+.corner-burst-bl::after { bottom: -8px; left: -8px; }
+.corner-burst-br::after { bottom: -8px; right: -8px; }
+
+/* Ink Splatter texture overlay for sections */
+.ink-texture {
+  position: relative;
+}
+
+.ink-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(0,0,0,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(0,0,0,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.02) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ink-texture > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Utility Classes */
@@ -281,6 +410,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 32px;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -788,3 +919,352 @@ h1, h2, h3, h4, h5, h6 {
 .article-body p {
   margin-bottom: 1rem;
 }
+
+/* --- COMIC BUBBLE DECORATIONS (BACKGROUND) --- */
+.hero-section,
+.projects-section,
+.contact-section,
+.section-padding {
+  position: relative;
+}
+
+.bg-decorations {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Base style for decorative comic bubbles */
+.decor-bubble {
+  position: absolute;
+  background: var(--color-pure-white);
+  border: 2px solid var(--color-pure-black);
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-pure-black);
+  box-shadow: 3px 3px 0 var(--color-pure-black);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.65;
+}
+
+/* Speech bubble with tail */
+.decor-speech {
+  border-radius: 20px;
+}
+
+.decor-speech::after {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  left: 22px;
+  border-width: 11px 11px 0 0;
+  border-style: solid;
+  border-color: var(--color-pure-black) transparent;
+  display: block;
+  width: 0;
+}
+
+.decor-speech::before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 23px;
+  border-width: 8px 8px 0 0;
+  border-style: solid;
+  border-color: var(--color-pure-white) transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+/* Thought bubble */
+.decor-thought {
+  border-radius: 30px;
+}
+
+.decor-thought::after,
+.decor-thought::before {
+  content: "";
+  position: absolute;
+  background: var(--color-pure-white);
+  border: 2px solid var(--color-pure-black);
+  border-radius: 50%;
+  box-shadow: 1.5px 1.5px 0 var(--color-pure-black);
+}
+
+.decor-thought::after {
+  width: 12px;
+  height: 12px;
+  bottom: -15px;
+  left: 28px;
+}
+
+.decor-thought::before {
+  width: 8px;
+  height: 8px;
+  bottom: -24px;
+  left: 22px;
+}
+
+/* Action Burst (Spiky) */
+.decor-burst {
+  background: var(--color-wolverine-yellow);
+  padding: 16px 24px;
+  clip-path: polygon(
+    0% 50%, 20% 42%, 8% 25%, 33% 33%, 35% 8%, 52% 28%, 68% 5%, 72% 28%, 92% 18%, 84% 46%, 100% 50%, 84% 58%, 92% 82%, 72% 76%, 68% 95%, 52% 76%, 35% 92%, 33% 71%, 8% 78%, 20% 58%
+  );
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 900;
+  -webkit-text-stroke: 1px var(--color-pure-black);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
+  color: var(--color-pure-white);
+  box-shadow: none;
+}
+
+/* Border outline simulation for spiky burst */
+.decor-burst-wrap {
+  filter: 
+    drop-shadow(1.5px 0 0 var(--color-pure-black))
+    drop-shadow(-1.5px 0 0 var(--color-pure-black))
+    drop-shadow(0 1.5px 0 var(--color-pure-black))
+    drop-shadow(0 -1.5px 0 var(--color-pure-black))
+    drop-shadow(3px 3px 0 var(--color-pure-black));
+  position: absolute;
+  z-index: 0;
+  opacity: 0.65;
+}
+
+.decor-burst-red {
+  background: var(--color-spiderman-red);
+  text-shadow: 2px 2px 0 var(--color-wolverine-yellow);
+}
+
+.decor-burst-blue {
+  background: var(--color-captain-blue);
+  text-shadow: 2px 2px 0 var(--color-wolverine-yellow);
+}
+
+/* Floating animation styles */
+@keyframes float-slow {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes float-slower {
+  0% { transform: translateY(0px) rotate(4deg); }
+  100% { transform: translateY(-18px) rotate(-2deg); }
+}
+
+.float-slow {
+  animation: float-slow 4s ease-in-out infinite alternate;
+}
+
+.float-slower {
+  animation: float-slower 6s ease-in-out infinite alternate;
+}
+
+/* Comic Caption Box (e.g. "Meanwhile...", "In Bandung...") */
+.decor-caption {
+  position: absolute;
+  background: var(--color-wolverine-yellow);
+  border: 2px solid var(--color-pure-black);
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--color-pure-black);
+  box-shadow: 2.5px 2.5px 0 var(--color-pure-black);
+  text-transform: uppercase;
+  z-index: 1;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+/* Whisper Speech Bubble */
+.decor-whisper {
+  border-style: dashed;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* Jagged Shout Bubble (Spiky Speech Bubble) */
+.decor-shout {
+  background: var(--color-spiderman-red);
+  color: var(--color-pure-white);
+  border: 2px solid var(--color-pure-black);
+  clip-path: polygon(
+    0% 15%, 15% 15%, 20% 0%, 35% 15%, 70% 15%, 75% 0%, 80% 15%, 100% 15%, 95% 45%, 100% 55%, 95% 65%, 100% 85%, 85% 85%, 80% 100%, 70% 85%, 30% 85%, 25% 100%, 20% 85%, 0% 85%, 5% 55%
+  );
+  font-size: 1.1rem;
+  font-weight: 900;
+  -webkit-text-stroke: 0.5px var(--color-pure-black);
+  text-shadow: 1.5px 1.5px 0 var(--color-pure-black);
+  padding: 12px 24px;
+}
+
+/* Border outline simulation wrapper for jagged shout bubble */
+.decor-shout-wrap {
+  filter:
+    drop-shadow(1.5px 0 0 var(--color-pure-black))
+    drop-shadow(-1.5px 0 0 var(--color-pure-black))
+    drop-shadow(0 1.5px 0 var(--color-pure-black))
+    drop-shadow(0 -1.5px 0 var(--color-pure-black))
+    drop-shadow(3px 3px 0 var(--color-pure-black));
+  position: absolute;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+/* Comic symbol bubble (e.g. !?, #@*!) */
+.decor-symbol {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-pure-white);
+  border: 2px solid var(--color-pure-black);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2.5px 2.5px 0 var(--color-pure-black);
+  color: var(--color-spiderman-red);
+  opacity: 0.65;
+}
+
+.decor-symbol-blue {
+  color: var(--color-captain-blue);
+}
+
+/* Hide background decorations on screens smaller than 1350px 
+   to ensure they stay strictly in the margins and never overlap content */
+@media (max-width: 1350px) {
+  .bg-decorations {
+    display: none !important;
+  }
+}
+
+/* --- MOBILE RESPONSIVENESS & OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+  /* Layout adjustments */
+  .grid-container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .panel-gutter {
+    margin: 0 1rem;
+  }
+
+  /* Section Padding */
+  .hero-section {
+    padding: 3.5rem 1rem;
+  }
+  .section-padding {
+    padding: 2.5rem 1rem;
+  }
+  .projects-section {
+    padding: 3.5rem 1rem;
+  }
+  .contact-section {
+    padding: 3.5rem 1rem;
+  }
+
+  /* Navbar Stack */
+  .navbar {
+    margin: 1rem 1rem 0;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Hero adjustments */
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+  }
+
+  .hero-actions {
+    margin-top: 2rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Newspaper Card mobile spacing */
+  .newspaper-card {
+    padding: 16px;
+  }
+
+  /* Newspaper Sidebar mobile separator */
+  .newspaper-sidebar {
+    border-bottom: 2px solid var(--color-pure-black);
+    padding-bottom: 24px;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar elements on very small screens */
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+
+  .nav-links .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .theme-icon-toggle {
+    width: 38px;
+    height: 38px;
+    margin-left: 0.25rem;
+  }
+
+  /* Contact List stack on mobile */
+  .comic-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.75rem 0;
+  }
+  
+  .comic-list li span:last-child {
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+  
+  .comic-list li:hover {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+

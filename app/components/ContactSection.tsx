@@ -1,6 +1,21 @@
+import { portfolioData } from "../data/portfolio";
+
 export default function ContactSection() {
+  const { contacts } = portfolioData;
   return (
-    <section id="contact" className="contact-section fade-in-up delay-300">
+    <section id="contact" className="contact-section fade-in-up delay-300 speed-lines ink-texture">
+      {/* Decorative Background Bubbles */}
+      <div className="bg-decorations">
+        <div className="decor-burst-wrap float-slow" style={{ top: "18%", right: "2%" }}>
+          <div className="decor-burst">POW!</div>
+        </div>
+        <div className="decor-bubble decor-speech float-slower" style={{ bottom: "15%", left: "2%" }}>
+          TRANSMITTING...
+        </div>
+        <div className="decor-caption" style={{ bottom: "5%", right: "3%" }}>
+          TO BE CONTINUED...
+        </div>
+      </div>
       <div className="grid-container">
         <div className="col-6">
           <h2 className="rotate-text contact-title">
@@ -12,15 +27,15 @@ export default function ContactSection() {
           <ul className="comic-list mt-4">
             <li>
               <span className="contact-list-label">EMAIL</span>
-              <span>hero@graphicmultiverse.com</span>
+              <span>{contacts.email}</span>
             </li>
             <li>
               <span className="contact-list-label">GITHUB</span>
-              <span>@heavyink</span>
+              <span>{contacts.github}</span>
             </li>
             <li>
               <span className="contact-list-label">TWITTER</span>
-              <span>@brutalistweb</span>
+              <span>{contacts.twitter}</span>
             </li>
           </ul>
         </div>

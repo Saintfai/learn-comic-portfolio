@@ -10,8 +10,11 @@ export default function Home() {
       <div className="page-wrapper">
         <Navbar />
         <HeroSection />
+        <div className="panel-gutter" />
         <AboutSection />
+        <div className="panel-gutter" />
         <ProjectsSection />
+        <div className="panel-gutter" />
         <ContactSection />
       </div>
     </main>
