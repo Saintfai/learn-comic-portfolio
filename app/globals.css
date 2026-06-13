@@ -20,6 +20,16 @@
   --text-ink: var(--color-pure-black);
 }
 
+:root[data-theme='noir'] {
+  --color-spiderman-red: #1a1a1a; /* Very dark gray, almost black */
+  --color-captain-blue: #000000; /* Pure black */
+  --color-wolverine-yellow: #ffffff; /* Pure white */
+  --color-pure-black: #000000;
+  --color-pure-white: #ffffff;
+  --bg-gutter: #b3b3b3; /* Mid-gray gutter for stark contrast with cards */
+  --text-ink: #000000;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -142,6 +152,28 @@ h1, h2, h3, h4, h5, h6 {
 .btn-ghost {
   background-color: transparent;
   color: var(--color-captain-blue);
+}
+
+/* Theme Toggle */
+.theme-icon-toggle {
+  background: var(--color-pure-white);
+  border: 2px solid var(--color-pure-black);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-pure-black);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s, box-shadow 0.2s;
+  margin-left: 0.5rem;
+}
+
+.theme-icon-toggle:hover {
+  transform: scale(1.1) rotate(-5deg);
+  background-color: var(--color-wolverine-yellow);
+  box-shadow: 2px 2px 0 var(--color-pure-black);
 }
 
 /* Cards */
