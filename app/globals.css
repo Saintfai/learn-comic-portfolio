@@ -48,6 +48,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 900;
@@ -611,9 +616,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-image-placeholder {
-  height: 150px;
-  background-color: #f3f3f3;
-  margin-bottom: 1rem;
+  height: 120px;
+  background-color: var(--color-wolverine-yellow);
+  background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 2px, transparent 2.5px);
+  background-size: 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-pure-black);
 }
 
 /* Contact Section */
@@ -836,16 +846,19 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotate(-1deg);
 }
 
-.newspaper-photo-placeholder {
+.newspaper-photo-container {
   width: 100%;
-  aspect-ratio: 4/3;
-  background-color: var(--color-spiderman-red);
-  background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 2px, transparent 2.5px);
-  background-size: 10px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: block;
   border: 2px solid var(--color-pure-black);
+  overflow: hidden;
+  background-color: var(--color-pure-black);
+}
+
+.newspaper-photo {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .photo-text {
@@ -857,6 +870,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 2px 2px 0 var(--color-pure-black);
   background-color: var(--color-pure-black);
   padding: 4px 8px;
+  z-index: 2;
 }
 
 .newspaper-caption {
@@ -1267,4 +1281,241 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* --- COMIC DETAIL MODAL --- */
+.comic-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 2px, transparent 2.5px);
+  background-size: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px 10px;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease-out;
+}
 
+.comic-modal-card {
+  background-color: var(--color-pure-white) !important;
+  color: var(--color-pure-black) !important;
+  border: 4px solid var(--color-pure-black);
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 8px 8px 0px var(--color-pure-black);
+  margin: 20px auto;
+}
+
+.comic-modal-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--color-pure-black);
+  background-color: var(--color-spiderman-red);
+  color: var(--color-pure-white);
+  font-size: 1.5rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1010;
+  box-shadow: 3px 3px 0 var(--color-pure-black);
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.comic-modal-close:hover {
+  transform: scale(1.1) rotate(9deg);
+  background-color: var(--color-spiderman-red) !important;
+  color: var(--color-pure-white) !important;
+}
+
+.comic-modal-close:focus,
+.comic-modal-close:active {
+  outline: none;
+  background-color: var(--color-spiderman-red) !important;
+  color: var(--color-pure-white) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--color-spiderman-red) !important;
+  color: var(--color-pure-white) !important;
+}
+
+.comic-modal-header {
+  border-bottom: 4px solid var(--color-pure-black);
+  padding: 0.75rem 1rem;
+}
+
+.comic-modal-header.bg-red { background-color: var(--color-spiderman-red); }
+.comic-modal-header.bg-blue { background-color: var(--color-captain-blue); }
+.comic-modal-header.bg-black { background-color: var(--color-pure-black); }
+
+.comic-modal-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.comic-modal-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
+}
+
+.comic-modal-header.bg-red .comic-modal-title {
+  color: var(--color-pure-white);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
+}
+.comic-modal-header.bg-blue .comic-modal-title {
+  color: var(--color-pure-white);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
+}
+.comic-modal-header.bg-black .comic-modal-title {
+  color: var(--color-wolverine-yellow);
+  text-shadow: 2px 2px 0 var(--color-spiderman-red);
+}
+
+.comic-modal-content {
+  padding: 12px 16px;
+  background-color: var(--color-pure-white) !important;
+  color: var(--color-pure-black) !important;
+}
+
+.comic-modal-content p,
+.comic-modal-content span:not(.chip),
+.comic-modal-content h4 {
+  color: var(--color-pure-black) !important;
+}
+
+.comic-modal-image-container {
+  width: 100%;
+  height: 150px;
+  border: 2px solid var(--color-pure-black);
+  background-color: var(--color-pure-black);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.comic-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.comic-modal-placeholder {
+  width: 100%;
+  height: 150px;
+  border: 2px solid var(--color-pure-black);
+  background-color: var(--color-wolverine-yellow);
+  background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 2px, transparent 2.5px);
+  background-size: 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.comic-modal-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-captain-blue);
+  border-bottom: 2px solid var(--color-pure-black);
+  padding-bottom: 2px;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.comic-modal-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.comic-modal-desc {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.comic-modal-full-desc {
+  font-family: var(--font-body);
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
+.comic-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.comic-modal-footer {
+  border-top: 4px solid var(--color-pure-black);
+  padding: 0.75rem 1rem;
+  background-color: var(--color-pure-white);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- COMPACT MODAL GRID & PLACEHOLDERS --- */
+.comic-modal-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.comic-modal-media {
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.comic-placeholder-text {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--color-pure-black);
+  border: 2px solid var(--color-pure-black);
+  background-color: var(--color-pure-white);
+  padding: 4px 8px;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 0 var(--color-pure-black);
+}
+
+@media (max-width: 576px) {
+  .comic-modal-grid {
+    flex-direction: column;
+  }
+  .comic-modal-media {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+  }
+}

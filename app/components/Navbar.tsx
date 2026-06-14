@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="heavy-border navbar">
       <div className="navbar-brand">
-        Graphic Multiverse
+        <span className="rotate-text">My</span> <span className="rotate-text-alt">Portfolio</span>
       </div>
       <div className="nav-links">
         <a href="#about" className="btn btn-secondary">About</a>

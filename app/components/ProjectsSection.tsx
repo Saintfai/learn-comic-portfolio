@@ -1,8 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import ComicCard from "./ComicCard";
 import { portfolioData } from "../data/portfolio";
 
 export default function ProjectsSection() {
   const { projects } = portfolioData;
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
   // Design elements mapped to project index
   const themeColors = ["bg-red", "bg-blue", "bg-black"];
@@ -14,7 +18,7 @@ export default function ProjectsSection() {
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
         <div className="decor-caption" style={{ top: "6%", left: "2%" }}>
-          LATEST ISSUES ON SALE...
+          LATEST PROJECT ON SALE...
         </div>
         <div className="decor-burst-wrap float-slower" style={{ top: "15%", left: "2%" }}>
           <div className="decor-burst decor-burst-blue">WHAM!</div>
@@ -32,7 +36,7 @@ export default function ProjectsSection() {
       <div className="grid-container">
         <div className="col-12 text-center projects-title-container">
           <h2 className="rotate-text-alt projects-title">
-            Latest Issues
+            Latest Project
           </h2>
         </div>
         
@@ -42,18 +46,26 @@ export default function ProjectsSection() {
           const primaryTagClass = tagClasses[index % tagClasses.length];
 
           return (
-            <div className="col-4" key={project.id}>
-              <div className={`hard-shadow h-full ${shadowClass}`}>
+            <div className="col-4" key={project.id} onClick={() => setSelectedProject(project)}>
+              <div className={`hard-shadow h-full ${shadowClass}`} style={{ cursor: "pointer" }}>
                 <ComicCard>
                   <div className="kicker">Issue #{index + 1}</div>
                   <div className={`comic-card-header ${themeColor}`}>
                     {project.title}
                   </div>
                   <div className="comic-card-content">
-                    <div className="heavy-border project-image-placeholder"></div>
+                    {project.image ? (
+                      <div className="heavy-border mb-4" style={{ width: "100%", height: "150px", overflow: "hidden" }}>
+                        <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      </div>
+                    ) : (
+                      <div className="project-image-placeholder mb-4">
+                        <span className="comic-placeholder-text">NO COVER ART</span>
+                      </div>
+                    )}
                     <p className="mb-4">{project.description}</p>
                     <div>
-                      {project.techStack.map((tech, idx) => (
+                      {project.tags.map((tech, idx) => (
                         <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
                       ))}
                     </div>
@@ -64,6 +76,67 @@ export default function ProjectsSection() {
           );
         })}
       </div>
+
+      {/* Comic Detail Modal */}
+      {selectedProject && (
+        <div className="comic-modal-overlay" onClick={() => setSelectedProject(null)}>
+          <div className="comic-modal-card hard-shadow" onClick={(e) => e.stopPropagation()}>
+            <button className="comic-modal-close" onClick={() => setSelectedProject(null)}>
+              &times;
+            </button>
+            
+            {/* Find theme class based on selected index */}
+            {(() => {
+              const selectedIdx = projects.findIndex(p => p.id === selectedProject.id);
+              const themeColor = selectedIdx !== -1 ? themeColors[selectedIdx % themeColors.length] : "bg-red";
+              return (
+                <div className={`comic-modal-header ${themeColor}`}>
+                  <span className="comic-modal-kicker">PROJECT DOSSIER // {selectedProject.year}</span>
+                  <h2 className="comic-modal-title">{selectedProject.title}</h2>
+                </div>
+              );
+            })()}
+
+            <div className="comic-modal-content">
+              {selectedProject.image ? (
+                <div className="comic-modal-image-container">
+                  <img src={selectedProject.image} alt={selectedProject.title} className="comic-modal-image" />
+                </div>
+              ) : (
+                <div className="comic-modal-placeholder">
+                  <span className="comic-placeholder-text">NO COVER ART</span>
+                </div>
+              )}
+              
+              <div className="comic-modal-body">
+                <h4 className="comic-modal-section-title">Description</h4>
+                <p className="comic-modal-full-desc">{selectedProject.fullDescription}</p>
+                
+                <h4 className="comic-modal-section-title">Equipped Tech Stack</h4>
+                <div className="comic-modal-tags">
+                  {selectedProject.tags.map((tag, idx) => (
+                    <span key={idx} className="chip info">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {selectedProject.githubUrl && (
+              <div className="comic-modal-footer">
+                <a 
+                  href={selectedProject.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-primary"
+                  style={{ width: "100%", display: "block", textAlign: "center" }}
+                >
+                  Access Files on GitHub
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
