@@ -67,6 +67,7 @@ export const portfolioData = {
   contacts: {
     email: "shevafairuz10@gmail.com",
     github: "@Saintfai",
-    Linkedin: "@fairuzshevamuhammad",
+    Linkedin: "https://www.linkedin.com/in/fairuz-sheva-muhammad-61446b386/",
+    instagram: "@saintfai_",
   }
 };
