@@ -34,8 +34,8 @@ export default function ContactSection() {
               <span>{contacts.github}</span>
             </li>
             <li>
-              <span className="contact-list-label">TWITTER</span>
-              <span>{contacts.twitter}</span>
+              <span className="contact-list-label">LINKEDIN</span>
+              <span>{contacts.Linkedin}</span>
             </li>
           </ul>
         </div>

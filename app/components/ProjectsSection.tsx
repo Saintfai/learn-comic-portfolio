@@ -8,10 +8,10 @@ export default function ProjectsSection() {
   const { projects } = portfolioData;
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
-  // Design elements mapped to project index
-  const themeColors = ["bg-red", "bg-blue", "bg-black"];
-  const shadowClasses = ["hard-shadow-primary", "hard-shadow-tertiary", "hard-shadow-primary"];
-  const tagClasses = ["new", "urgent", "info"];
+  // Design elements mapped to project index (shuffled/randomized order)
+  const themeColors = ["bg-blue", "bg-black", "bg-red", "bg-black", "bg-blue"];
+  const shadowClasses = ["hard-shadow-tertiary", "hard-shadow-primary", "hard-shadow-primary", "hard-shadow-tertiary", "hard-shadow-primary"];
+  const tagClasses = ["info", "new", "urgent", "info", "new"];
 
   return (
     <section id="projects" className="projects-section fade-in-up delay-200 speed-lines speed-lines-blue">
@@ -51,11 +51,11 @@ export default function ProjectsSection() {
                 <ComicCard>
                   <div className="kicker">Issue #{index + 1}</div>
                   <div className={`comic-card-header ${themeColor}`}>
-                    {project.title}
+                    <h3 className="comic-card-title">{project.title}</h3>
                   </div>
                   <div className="comic-card-content">
                     {project.image ? (
-                      <div className="heavy-border mb-4" style={{ width: "100%", height: "150px", overflow: "hidden" }}>
+                      <div className="heavy-border mb-4" style={{ width: "100%", height: "120px", overflow: "hidden" }}>
                         <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                       </div>
                     ) : (
@@ -63,11 +63,14 @@ export default function ProjectsSection() {
                         <span className="comic-placeholder-text">NO COVER ART</span>
                       </div>
                     )}
-                    <p className="mb-4">{project.description}</p>
-                    <div>
-                      {project.tags.map((tech, idx) => (
+                    <p className="project-card-desc">{project.description}</p>
+                    <div className="project-card-tags">
+                      {project.tags.slice(0, 3).map((tech, idx) => (
                         <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
                       ))}
+                      {project.tags.length > 3 && (
+                        <span className="chip-ellipsis">...</span>
+                      )}
                     </div>
                   </div>
                 </ComicCard>

@@ -8,7 +8,7 @@ export default function Navbar() {
       </div>
       <div className="nav-links">
         <a href="#about" className="btn btn-secondary">About</a>
-        <a href="#projects" className="btn btn-primary">View Comics</a>
+        <a href="#projects" className="btn btn-primary">Project</a>
         <ThemeToggle />
       </div>
     </nav>

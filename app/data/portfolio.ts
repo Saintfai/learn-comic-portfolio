@@ -4,8 +4,8 @@ export const portfolioData = {
     role: "Developer",
     description: "Building aggressive, high-contrast web experiences that break the grid and command attention.",
     alias: "Fairuz Sheva",
-    location: "Bandung, Jawa Barat",
-    skills: ["Flutter", "React", "Next.js", "UI Design", "System Analysis"],
+    University: "Politeknik Negeri Bandung",
+    skills: ["Flutter", "React", "Next.js", "Figma"],
     bio: [
       "I am a Computer Science student and Software Developer with a versatile interest in building and analyzing digital systems. My expertise spans Mobile Development (Flutter) and Web Development, where I focus on creating seamless, high-performance applications from the front to the backend.",
       "Beyond writing code, I have a strong passion for System Analysis. I enjoy the process of auditing requirements, designing domain models, and applying GRASP patterns to ensure every project is built on a solid, scalable architecture.",
@@ -15,38 +15,58 @@ export const portfolioData = {
   projects: [
     {
       id: "1",
-      title: "E-Commerce Redux",
+      title: "GastroLog",
       image: "",
-      description: "A complete overhaul of a boring shopping site into a dynamic, engaging storefront.",
-      fullDescription: "E-Commerce Redux is a high-performance storefront designed to disrupt standard shopping layouts. Featuring state-of-the-art state synchronization, optimized image rendering, custom comic transitions, and a responsive checkout experience that feels like flipping through a comic book. Built to show that commerce can be visually striking and incredibly fast.",
+      description: "An automated web scraper and notification bot built in Python to monitor and report academic attendance changes.",
+      fullDescription: "GastroLog is a smart journal web application specifically designed for GERD (Gastroesophageal Reflux Disease) and acid reflux sufferers. It provides a comprehensive platform to track daily food and symptom intake, helping users understand their triggers and manage their condition more effectively. The app features an intuitive interface for logging meals, noting symptom severity, and reviewing historical data to identify patterns between food consumption and physical reactions.",
       year: "2026",
-      tags: ["React", "Redux Toolkit", "Next.js", "Node.js", "TailwindCSS"],
-      githubUrl: "https://github.com/sheva/ecommerce-redux"
+      tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
+      githubUrl: "https://github.com/Saintfai/Project-GastroLog"
     },
     {
       id: "2",
-      title: "SaaS Dashboard",
+      title: "Auto Notification Attendance",
       image: "",
-      description: "Data visualization doesn't have to be dull. High contrast charts and brutalist controls.",
-      fullDescription: "A revolutionary take on data analytics. This dashboard replaces boring enterprise designs with bold colors, thick borders, custom SVGs, and interactive D3.js chart components. It provides real-time traffic monitoring, sales tracking, and server health checks, all packed into a brutalist design system that commands attention.",
-      year: "2025",
-      tags: ["Next.js", "D3.js", "TypeScript", "Recharts", "CSS Grid"],
-      githubUrl: "https://github.com/sheva/saas-dashboard"
+      description: "An automated web scraper and notification bot built in Python to monitor and report academic attendance changes.",
+      fullDescription: "An automation utility designed to continuously poll or manually check academic portal session histories. It logs into academic portals via HTTP requests, screens HTML structures using BeautifulSoup to calculate real-time percentage differentials, maintains localized cache snapshots to detect structural data deviations, and streams updates immediately over instant messaging channels.",
+      year: "2026",
+      tags: ["Python", "Requests", "BeautifulSoup", "Github Actions"],
+      githubUrl: "https://github.com/Saintfai/Project-Auto-Notification-Attendance"
     },
     {
       id: "3",
-      title: "Web3 Portal",
+      title: "Kegiatin",
       image: "",
-      description: "Connecting to the blockchain with maximum visual impact and structural honesty.",
-      fullDescription: "A decentralized gateway built for absolute clarity. Web3 Portal enables seamless wallet connection, real-time gas fee estimation, custom smart contract interactions, and NFT minting. Designed with high-contrast UI feedback to make the complex mechanics of Web3 simple, readable, and visually engaging.",
+      description: "Offline-first event management app for PD Pemuda Persis Kab. Bandung.",
+      fullDescription: "An offline-first event management application designed to digitalize event administration, resolve attendance tracking issues in areas with poor internet connection (blank spots), provide a systematic central repository for event materials, and integrate structured validation for official organization memberships.",
+      year: "2026",
+      tags: ["Flutter", "Riverpod", "PostgreSQL", "GoRouter", "NestJS", "Hive CE"],
+      githubUrl: "https://github.com/ikhsan3adi/kegiatin"
+    },
+    {
+      id: "4",
+      title: "TTDJ",
+      image: "",
+      description: "Web application framework based on Laravel featuring an expressive, elegant syntax.",
+      fullDescription: "A digital signature application built on top of the Laravel framework that streamlines web development overheads by utilizing standard routing mechanisms, robust dependency injection containers, intuitive database ORM, background queues, and customizable schema migrations.",
+      year: "2026",
+      tags: ["PHP", "Laravel", "PostgreSQL"],
+      githubUrl: "https://github.com/Saintfai/Project-Aplikasi-Penandatanganan-Digital"
+    },
+    {
+      id: "5",
+      title: "Space Invader",
+      image: "",
+      description: "A 2D arcade game where players control a spaceship to destroy incoming waves of alien enemies while managing resources and power-ups.",
+      fullDescription: "Space Invaders is a desktop-based 2D arcade game that features progressive wave scaling mechanics, multiple enemy difficulty profiles, ammunition constraints, structural health tracking, randomized power-up supply spawns, responsive collision bounding blocks, an interactive soundscape engine, and a file-persistent dynamic leaderboard system.",
       year: "2025",
-      tags: ["Web3.js", "Ethers.js", "React", "Solidity", "Hardhat"],
-      githubUrl: "https://github.com/sheva/web3-portal"
+      tags: ["C", "SDL3", "SDL3_ttf", "SDL3_mixer", "MinGw", "Make"],
+      githubUrl: "https://github.com/ihsan-ramadhan/space-invaders"
     }
   ],
   contacts: {
-    email: "hero@graphicmultiverse.com",
-    github: "@heavyink",
-    twitter: "@brutalistweb",
+    email: "shevafairuz10@gmail.com",
+    github: "@Saintfai",
+    Linkedin: "@fairuzshevamuhammad",
   }
 };
