@@ -8,7 +8,7 @@ export default function AboutSection() {
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
         <div className="decor-caption" style={{ top: "8%", left: "3%" }}>
-          IN BANDUNG, JAWA BARAT...
+          SOMEWHERE, IN BANDUNG ...
         </div>
         <div className="decor-bubble decor-speech float-slow" style={{ top: "15%", right: "2%" }}>
           EXTRA! EXTRA!
@@ -35,8 +35,12 @@ export default function AboutSection() {
               {/* Left Column: Photo/Profile */}
               <div className="newspaper-sidebar">
                 <div className="newspaper-photo-frame">
-                  <div className="newspaper-photo-placeholder">
-                    <span className="photo-text">HERO OR MENACE?</span>
+                  <div className="newspaper-photo-container">
+                    <img 
+                      src="/IMG_6489.JPG.jpeg" 
+                      alt="Developer profile photo" 
+                      className="newspaper-photo"
+                    />
                   </div>
                   <p className="newspaper-caption">Photo: A developer caught in the act of building responsive UIs.</p>
                 </div>
@@ -44,7 +48,7 @@ export default function AboutSection() {
                   <h4 className="stats-title">CLASSIFIED FILES</h4>
                   <ul className="stats-list">
                     <li><strong>Alias:</strong> {profile.alias}</li>
-                    <li><strong>Base:</strong> {profile.location}</li>
+                    <li><strong>University:</strong> {profile.University}</li>
                     <li><strong>Powers:</strong> {profile.skills.join(", ")}</li>
                   </ul>
                 </div>
